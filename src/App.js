@@ -46,7 +46,7 @@ function App() {
 
       <Row style={{ width: '100%', justifyContent: 'center' }}>
 
-        {foodsList.filter((foodItem)=>{
+        {foodsList.length ? foodsList.filter((foodItem)=>{
       if(foodItem.name.toLowerCase().includes(search.toLowerCase())){
         return true
       }
@@ -58,9 +58,9 @@ function App() {
           calories : food.calories,
           image: food.image,
           servings: food.servings
-        }} handleDelete={handleDelete}/>
+        }} handleDelete={handleDelete} foodList={foodsList}/>
       )
-    })}
+    }): "Oop! No more content"}
       </Row>
     </div>
   );

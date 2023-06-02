@@ -2,10 +2,12 @@
 import { Card, Col, Button } from 'antd';
 
 // Iteration 2
-function FoodBox({food:{name,calories,image,servings}, handleDelete}) {
+function FoodBox({food:{name,calories,image,servings}, handleDelete, foodList}) {
+  
  
   return (
     <Col>
+    
       <Card
         title={name}
         style={{ width: 230, height: 300, margin: 10 }}
