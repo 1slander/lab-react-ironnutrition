@@ -1,9 +1,10 @@
 import { Divider, Input } from 'antd';
 
 const SearchBar = ({search,setSearch}) => {
- const handleSearchInput = (e)=>{
+  
+const handleSearchInput = (e)=>{
   setSearch(e.target.value)
- }
+}
   return (
     <>
       <Divider>Search</Divider>

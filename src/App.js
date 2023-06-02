@@ -11,6 +11,7 @@ function App() {
 
   const [foodsList, setFoodList]= useState(foods)
   const [search,setSearch]=useState("")
+  const [showForm,setShowForm]=useState(true)
   
   const handleDelete = (foodName)=>{
     const deleteFood = foodsList.filter((food)=>{
@@ -24,20 +25,27 @@ function App() {
     setFoodList(deleteFood)
   }
 
+  const handleShowForm = ()=>{
+    setShowForm(!showForm)
+  }
+
   
 
   
   return (
     <div className="App">
-      <AddFoodForm foodList={foodsList} setFoodList={setFoodList}/>
+    {showForm &&
+      <AddFoodForm foodList={foodsList} setFoodList={setFoodList} showForm={showForm}/>
+    }
 
-      <Button> Hide Form / Add New Food </Button>
+      <Button onClick={handleShowForm}>{showForm ? <span>Hide Form</span> : <span>Add New Food</span>   } </Button>
 
       <SearchBar search={search} setSearch={setSearch} />
 
       <Divider>Food List</Divider>
 
       <Row style={{ width: '100%', justifyContent: 'center' }}>
+
         {foodsList.filter((foodItem)=>{
       if(foodItem.name.toLowerCase().includes(search.toLowerCase())){
         return true
