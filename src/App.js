@@ -4,30 +4,36 @@ import './App.css';
 import foods from './foods.json'
 import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
+import SearchBar from './components/SearchBar';
 
 function App() {
 
   const [foodsList, setFoodList]= useState(foods)
+  const [search,setSearch]=useState("")
   
 
-  // const addNewFood = (food)=>{
-  //   const updatedFoodList = [...foodsList,food];
-  //   setFoodList(updatedFoodList)
-  // }
+  
 
   
   return (
     <div className="App">
-    <h2>Food List</h2>
+    
+    <SearchBar search={search} setSearch={setSearch} />
     <AddFoodForm foodList={foodsList} setFoodList={setFoodList}/>
-    {foodsList.map((food)=>{
-      return (
-       <FoodBox food={{
-        name : food.name,
-        calories : food.calories,
-        image: food.image,
-        servings: food.servings
-       }}/>
+    <h2>Food List</h2>
+    {foodsList.filter((foodItem)=>{
+      if(foodItem.name.toLowerCase().includes(search.toLowerCase())){
+        return true
+      }
+    })
+      .map((food)=>{
+        return (
+          <FoodBox food={{
+          name : food.name,
+          calories : food.calories,
+          image: food.image,
+          servings: food.servings
+        }}/>
       )
     })}
       
